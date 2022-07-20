@@ -55,17 +55,63 @@ function capitalize (string) {
 
 function playRound(playerSelection,computerSelection) {
     if (playerSelection === computerSelection) {
-        return "It's a tie!";
+        return "tie";
     } else if ((playerSelection === "Rock" && computerSelection === "Scissors") || (playerSelection === "Paper" && computerSelection === "Rock") || (playerSelection === "Scissors" && computerSelection === "Paper")){
-        return "You win!";
+        return "win";
     } else {
-        return "You loose!";
+        return "loose";
     }
 }
 
-const playerSelection = capitalize(prompt("Your choice?", "Rock"));
-const computerSelection = getComputerChoice();
+// game () - Play 5 rounds and declare winner
+    // Understand
+        // Use a loop to play 5 rounds of R/P/S. Ask for playerSelection in each round. Update the score in each round. Return score and message in the end
+    // Plan
+        // Interface - Prompt for Input
+        // Input - no direct input into function, but will make use of previous functions (getComputerChoice, capitalize and playRound)
+        // Output - Choices each round, score each round and Winner declaration in the end
+    // Algorithm
+        // declare and set userScore and computerScore to 0
+        // Create loop with 5 instances
+            // getComputerChoice
+            // prompt playerChoice (with capitalize)
+            // playRound
+            // Update Scores
+                // If "win" userScore + 1
+                // Else if "loose" computerScore + 1
+            // console.log scores
+        // Declare winner
 
-console.log(playerSelection);
-console.log(computerSelection);
-console.log(playRound(playerSelection,computerSelection));
+function game () {
+    let userScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        let computerSelection = getComputerChoice();
+        let playerSelection = capitalize(prompt("Your choice?","Rock"));
+
+        roundResult = playRound(playerSelection,computerSelection);
+
+        if (roundResult === "win") {
+            userScore += 1;
+        } else if (roundResult === "loose") {
+            computerScore += 1;
+        }
+        
+        let message = 
+        `You chose ${playerSelection}
+        Computer chose ${computerSelection}
+        Score - You: ${userScore}, Computer: ${computerScore}`;
+        console.log(message)
+    }
+    
+    if (userScore > computerScore) {
+        console.log("You win the game!")
+    } else if (userScore < computerScore) {
+        console.log("You loose this game!")
+    } else {
+        console.log("This game is a tie!")
+    }
+}
+
+game ();
