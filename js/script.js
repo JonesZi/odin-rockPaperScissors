@@ -114,6 +114,23 @@ function endGame (userScore, computerScore) {
     resultsPart.appendChild(end);
 }
 
+function playGame (e) {
+    if (!e.target.classList.contains("btn")) return;
+    let playerSelection = e.target.textContent;
+    let computerSelection = getComputerChoice();
+    playRound(playerSelection,computerSelection);
+    gameCounter += 1;
+    displayLog(userScore,computerScore,playerSelection,computerSelection,gameCounter);
+    if (isGameFinished(gameCounter)) {
+        endGame(userScore,computerScore);
+    };
+}
+
+
+//Event Listeners
+
+window.addEventListener("click", playGame);
+
 
 
 
