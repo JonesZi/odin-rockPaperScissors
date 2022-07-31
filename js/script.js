@@ -47,7 +47,36 @@ const buttons = document.querySelectorAll(".btn");
 const resultsPart = document.querySelector("#results");
 const headline = document.querySelector("#choose");
 
+// Functions
+function getComputerChoice() {
+    let randomNumber = Math.floor(Math.random() * 3) + 1;
+    if (randomNumber === 1) {
+        return "Rock";
+    } else if (randomNumber === 2) {
+        return "Paper";
+    } else {
+        return "Scissors";
+    }
+}
 
+function determineWinner(playerSelection,computerSelection) {
+    if (playerSelection === computerSelection) {
+        return "tie";
+    } else if ((playerSelection === "Rock" && computerSelection === "Scissors") || (playerSelection === "Paper" && computerSelection === "Rock") || (playerSelection === "Scissors" && computerSelection === "Paper")){
+        return "win";
+    } else {
+        return "loose";
+    }
+}
+
+function playRound (playerSelection, computerSelection) {
+    let result = determineWinner(playerSelection,computerSelection);
+    if (result === "win") {
+        userScore += 1;
+    } else if (result === "loose") {
+        computerScore += 1;
+    }
+};
 
 
 
