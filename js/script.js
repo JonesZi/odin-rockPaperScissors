@@ -78,6 +78,41 @@ function playRound (playerSelection, computerSelection) {
     }
 };
 
+function displayLog (userScore,computerScore, playerSelection, computerSelection, gameCounter) {
+    let string = `Game ${gameCounter} out of 5! 
+    You chose ${playerSelection}.
+    Computer chose ${computerSelection}.
+    Current Score - 
+    You: ${userScore}
+    Computer: ${computerScore}.`;
+    let para = document.createElement("p");
+    para.textContent = string;
+    resultsPart.appendChild(para);
+}
+
+function isGameFinished (gameCounter) {
+    if (gameCounter < 5) {
+        return false; 
+    } else {
+        return true;
+    };
+};
+
+function endGame (userScore, computerScore) {
+    //remove buttons and headline
+    buttons.forEach(e => e.remove());
+    headline.remove();
+    //Winner message    
+    const end = document.createElement("h1");
+    if (userScore > computerScore) {
+        end.textContent = `You win the game! Final Score - You: ${userScore}, Computer: ${computerScore}`;
+    } else if (userScore < computerScore) {
+        end.textContent = `You loose this game! Final Score - You: ${userScore}, Computer: ${computerScore}`;
+    } else {
+        end.textContent = `This game is a tie! Final Score - You: ${userScore}, Computer: ${computerScore}`;
+    }
+    resultsPart.appendChild(end);
+}
 
 
 
